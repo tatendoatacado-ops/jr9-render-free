@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: jr9-render-free
+    env: docker
+    plan: free
