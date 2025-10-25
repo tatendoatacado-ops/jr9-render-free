@@ -1,0 +1,18 @@
+name: Keep Render Awake
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: keep-render-awake
+      cancel-in-progress: false
+    steps:
+      - name: Ping homepage
+        run: curl -sS https://jr9-render-free.onrender.com > /dev/null
+      - name: Ping health endpoint
+        run: curl -sS https://jr9-render-free.onrender.com/status > /dev/null
